@@ -1,33 +1,30 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import wheelchair from './assets/wheelchair.svg'
 
 function App() {
   const [count, setCount] = useState(0)
+  const titulo = "UTF sobre rodas"
+
+  function realizalogin(){
+    console.log("botão foi clicado")
+  }
 
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+        <h1>{titulo}</h1>
+        <img src={wheelchair} className="wheelchair" alt="Desenho de uma cadeira de rodas" />
+      </div>  
+      <div>
+        <p>E-mail</p>
+        <input placeholder="e-mail@dominio.com"/>
+        <p>Senha</p>
+        <input placeholder="Digite sua senha"/>
+        <p><u>Esqueci minha senha</u></p>
+        <button onClick={realizalogin}>Login</button>
+        <p>Ou clique aqui para se <b>cadastrar</b></p>
+        </div>   
     </>
   )
 }
