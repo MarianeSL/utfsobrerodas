@@ -7,4 +7,5 @@ input{
     height: 40px;
     align-items: start;
     stroke: none;
+    border: 0;
   }

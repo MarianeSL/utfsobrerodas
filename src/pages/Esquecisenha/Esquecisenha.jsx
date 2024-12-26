@@ -1,6 +1,7 @@
 import Input from '/src/shared/Input'
-import Button from '../shared/Button'
+import Button from '../../shared/Button'
 import React from 'react'
+import './Esquecisenha.css'
 
 function Esquecisenha(){
     const redefinirsenha = () =>{
@@ -8,7 +9,7 @@ function Esquecisenha(){
     }
     return(
         <div className='form-container'>
-            <p>Insira o e-mail cadastrado para receber o e-mail de redefinição.</p>
+            <p>Digite o e-mail cadastrado</p>
             <Input
             placeholder={'e-mail@dominio.com'}
             />

@@ -1,27 +1,22 @@
 import React from 'react'
+import './Cadastro.css'
 import wheelchair from '/src/assets/wheelchair.svg'
 import Input from '/src/shared/Input'
 import Button from '/src/shared/Button'
 import { useNavigate } from 'react-router-dom'
 
-function Login() {
+function Cadastro() {
   
   const titulo = "UTF sobre rodas"
   const navigate = useNavigate();
-  function realizalogin(){
-    
+  function realizacadastro(){
+    navigate('/')
   }
-  const esquecisenha = () =>{
-    navigate('/esquecisenha');
-  }
-
-  function cadastro() {
-    
-  }
+  
  
   return (
     <>
-      <div>
+      <div className='logo'>
         <h1>{titulo}</h1>
         <img src={wheelchair} className="wheelchair" alt="Desenho de uma cadeira de rodas" />
       </div>  
@@ -32,26 +27,20 @@ function Login() {
         />
         <p>Senha</p>
         <Input
-          placeholder={'Digite sua senha'}
+          placeholder={'Digite uma senha'}
+        />
+        <p>Repita a senha</p>
+        <Input
+          placeholder={'Digite a senha novamente'}
         />
         <Button
-          onClick={esquecisenha}
-          buttonname={<u>Esqueci minha senha</u>}
-          simples={true}
+          onClick={realizacadastro}
+          buttonname={'Cadastrar'}
         />  
-      
-        <Button
-          onClick={realizalogin}
-          buttonname={'Login'}
-        />  
-        <p>Ou clique aqui para se <Button
-          onClick={cadastro}
-          buttonname={<b>cadastrar</b>}
-          simples={true}
-        /></p>
+        <a href='/'><u>Já possui cadastro? Clique aqui para fazer login</u></a>
         </div>   
     </>
   )
 }
 
-export default Login
+export default Cadastro
