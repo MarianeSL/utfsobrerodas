@@ -1,12 +1,14 @@
 import './index.css';
 
-export default function Button({ onClick, buttonname, simples }) {
+export default function Button({ type, onClick, buttonname, simples }) {
     return ( simples ?
-        <button className='simples'
-        onClick={onClick}
+        <button 
+            className='simples'
+            onClick={onClick}
         >{buttonname}</button> 
         :
         <button
+        type={type}
         onClick={onClick}
         >{buttonname}</button>
 

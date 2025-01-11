@@ -1,9 +1,13 @@
 import './index.css';
 
-export default function Input({ placeholder}) {
+export default function Input({value, type, placeholder, onChange }) {
     return ( 
         <input
-            placeholder={placeholder}
+        value={value}
+        type={type}
+        placeholder={placeholder}
+        onChange={onChange}
+
         />
     )
 }
