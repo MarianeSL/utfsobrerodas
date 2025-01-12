@@ -16,7 +16,7 @@ function Login() {
 
   function realizalogin() {
     signInWithEmailAndPassword(auth_mod, email, password)
-    .then(() => navigate('/Cadastro'))
+    .then(() => navigate('/Origem'))
     .catch(error => alert(error))
   }
   const esquecisenha = () => {
@@ -30,37 +30,33 @@ function Login() {
   return (
     <>
       <div className='logo'>
-        <h1>{titulo}</h1>
+        <h1 className='titulo'>{titulo}</h1>
         <img src={wheelchair} className="wheelchair" alt="Desenho de uma cadeira de rodas" />
       </div>
-        <form className='form-container'>
-          <p>E-mail</p>
+        <div className='form-container'>
+          <p className='form'>E-mail</p>
           <Input
             value={email}
             type={'email'}
             placeholder={'e-mail@dominio.com'}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <p>Senha</p>
+          <p className='form'>Senha</p>
           <Input 
             value={password}
             type={'password'}
             placeholder={'Digite sua senha'}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button
-            onClick={esquecisenha}
-            buttonname={<u>Esqueci minha senha</u>}
-            simples={true}
-          />
+          
+          <a href='/esquecisenha'><u>Esqueci minha senha</u></a>
 
           <Button
             onClick={realizalogin}
             buttonname={'Login'}
-            type={'submit'}
           />
           <a href='/cadastro'>Ou clique aqui para se <strong>cadastrar</strong></a>
-        </form>
+        </div>
     </>
   )
 }

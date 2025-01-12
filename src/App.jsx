@@ -4,6 +4,7 @@ import Login from './pages/Login/Login'
 import Esquecisenha from './pages/Esquecisenha/Esquecisenha'
 import './index.css'
 import Cadastro from './pages/Cadastro/Cadastro'
+import Origem from './pages/Origem/Origem'
 
 function App(){
   return (
@@ -12,6 +13,7 @@ function App(){
         <Route path="/" element={<Login />} />
         <Route path="/esquecisenha" element={<Esquecisenha />} />
         <Route path="/cadastro" element={<Cadastro/>} />
+        <Route path="/origem" element={<Origem/>}/>
       </Routes>
     </Router>
   )
