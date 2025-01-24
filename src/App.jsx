@@ -5,6 +5,8 @@ import Esquecisenha from './pages/Esquecisenha/Esquecisenha'
 import './index.css'
 import Cadastro from './pages/Cadastro/Cadastro'
 import Origem from './pages/Origem/Origem'
+import Destino from './pages/Destino/Destino'
+import Menu from './pages/Menu/Menu'
 
 function App(){
   return (
@@ -14,6 +16,8 @@ function App(){
         <Route path="/esquecisenha" element={<Esquecisenha />} />
         <Route path="/cadastro" element={<Cadastro/>} />
         <Route path="/origem" element={<Origem/>}/>
+        <Route path="/destino" element={<Destino/>}/>
+        <Route path="/menu" element={<Menu/>}/>
       </Routes>
     </Router>
   )

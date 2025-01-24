@@ -19,14 +19,7 @@ function Login() {
     .then(() => navigate('/Origem'))
     .catch(error => alert(error))
   }
-  const esquecisenha = () => {
-    navigate('/esquecisenha');
-  }
-
-  function cadastro() {
-    navigate('/Cadastro')
-  }
-
+ 
   return (
     <>
       <div className='logo'>
