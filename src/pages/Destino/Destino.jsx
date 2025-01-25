@@ -13,25 +13,26 @@ function Destino() {
 
 
   function selecionaDestino() {
-    
+
   }
 
   return (
     <>
-      <div className='menu'>
-      <BsList 
-      onClick={navigate('/menu')}/>
-      </div>
-        <div className='div-container'>
-          <h3 className='seleciona-local'>Para onde você quer ir?</h3>
-          {/* <MapaIndoor/> */}
-          <Button
-            onClick={selecionaDestino}
-            buttonname={'Selecionar'}
-          />
-          <BsHeart />
-          <BsHeartFill />
+      <div className='header'>
+        <div onClick={() => navigate('/menu')}>
+          <BsList />
         </div>
+      </div>
+      <div className='div-container'>
+        <h3 className='seleciona-local'>Para onde você quer ir?</h3>
+        {/* <MapaIndoor/> */}
+        <Button
+          onClick={selecionaDestino}
+          buttonname={'Selecionar'}
+        />
+        <BsHeart />
+        <BsHeartFill />
+      </div>
     </>
   )
 }

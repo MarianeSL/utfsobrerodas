@@ -13,25 +13,26 @@ function Origem() {
 
 
   function selecionaOrigem() {
-    
+    navigate('/destino')
   }
 
   return (
     <>
-      <div className='menu'>
-      <BsList 
-      onClick={navigate('/menu')}/>
-      </div>
-        <div className='div-container'>
-          <h3 className='seleciona-local'>Onde você está?</h3>
-          {/* <MapaIndoor/> */}
-          <Button
-            onClick={selecionaOrigem}
-            buttonname={'Selecionar'}
-          />
-          <BsHeart />
-          <BsHeartFill />
+      <div className='header'>
+        <div onClick={() => navigate('/menu')}>
+          <BsList />
         </div>
+      </div>
+      <div className='div-container'>
+        <h3 className='seleciona-local'>Onde você está?</h3>
+        {/* <MapaIndoor/> */}
+        <Button
+          onClick={selecionaOrigem}
+          buttonname={'Selecionar'}
+        />
+        <BsHeart />
+        <BsHeartFill />
+      </div>
     </>
   )
 }
