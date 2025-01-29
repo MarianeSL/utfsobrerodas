@@ -25,7 +25,7 @@ function Destino() {
       </div>
       <div className='div-container'>
         <h3 className='seleciona-local'>Para onde você quer ir?</h3>
-        {/* <MapaIndoor/> */}
+        <MapboxComponent></MapboxComponent>
         <Button
           onClick={selecionaDestino}
           buttonname={'Selecionar'}

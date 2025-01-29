@@ -5,7 +5,7 @@ import { BsList } from "react-icons/bs";
 import { BsHeart } from "react-icons/bs";
 import { BsHeartFill } from "react-icons/bs";
 import './Origem.css'
-// import MapaIndoor from '../../shared/Mapa';
+import MapboxComponent from '../../shared/Map/Mapcomponent';
 
 function Origem() {
 
@@ -25,7 +25,9 @@ function Origem() {
       </div>
       <div className='div-container'>
         <h3 className='seleciona-local'>Onde você está?</h3>
-        {/* <MapaIndoor/> */}
+        {/* <div className='mapa'> */}
+        <MapboxComponent></MapboxComponent>
+        {/* </div> */}
         <Button
           onClick={selecionaOrigem}
           buttonname={'Selecionar'}

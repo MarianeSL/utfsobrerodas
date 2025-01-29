@@ -7,6 +7,7 @@ import Cadastro from './pages/Cadastro/Cadastro'
 import Origem from './pages/Origem/Origem'
 import Destino from './pages/Destino/Destino'
 import Menu from './pages/Menu/Menu'
+import 'leaflet/dist/leaflet.css'
 
 function App(){
   return (
