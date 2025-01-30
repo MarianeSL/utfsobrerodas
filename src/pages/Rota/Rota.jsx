@@ -4,15 +4,15 @@ import { useNavigate } from 'react-router-dom'
 import { BsList } from "react-icons/bs";
 import { BsHeart } from "react-icons/bs";
 import { BsHeartFill } from "react-icons/bs";
-import './Origem.css'
+import './Rota.css'
 import MapboxComponent from '../../shared/Map/Mapcomponent';
 
-function Origem() {
+function Rota() {
 
   const navigate = useNavigate();
 
 
-  function selecionaOrigem() {
+  function mostradirecao() {
     navigate('/destino')
   }
 
@@ -23,14 +23,18 @@ function Origem() {
           <BsList />
         </div>
       </div>
-      <div className='div-body'>
-        <h3 className='seleciona-local'>Onde você está?</h3>
+      <div className='div-body-rota'>
+        <h3 className='header-text-rota'>Sua rota está pronta!</h3>
         <div className='mapa'>
         <MapboxComponent/>
         </div>
         <Button
-          onClick={selecionaOrigem}
-          buttonname={'Selecionar'}
+          onClick={mostradirecao}
+          buttonname={'Ver direções'}
+        />
+        <Button
+          onClick={() => navigate('/origem')}
+          buttonname={'Nova rota'}
         />
         <BsHeart />
         <BsHeartFill />
@@ -39,4 +43,4 @@ function Origem() {
   )
 }
 
-export default Origem
+export default Rota

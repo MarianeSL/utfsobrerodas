@@ -8,6 +8,8 @@ import Origem from './pages/Origem/Origem'
 import Destino from './pages/Destino/Destino'
 import Menu from './pages/Menu/Menu'
 import 'leaflet/dist/leaflet.css'
+import Rota from './pages/Rota/Rota'
+import Favoritos from './pages/Favoritos/Favoritos'
 
 function App(){
   return (
@@ -19,6 +21,8 @@ function App(){
         <Route path="/origem" element={<Origem/>}/>
         <Route path="/destino" element={<Destino/>}/>
         <Route path="/menu" element={<Menu/>}/>
+        <Route path="/rota" element={<Rota/>}/>
+        <Route path="/favoritos" element={<Favoritos/>}/>
       </Routes>
     </Router>
   )

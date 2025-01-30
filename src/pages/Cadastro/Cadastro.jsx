@@ -30,25 +30,25 @@ function Cadastro() {
   return (
     <>
       <div className='logo'>
-        <h1>{titulo}</h1>
+        <h1 className='titulo'>{titulo}</h1>
         <img src={wheelchair} className="wheelchair" alt="Desenho de uma cadeira de rodas" />
       </div>  
       <div className='form-container'>
-        <p>E-mail</p>
+        <p className='input-cadastro'>E-mail</p>
         <Input
           value={email}
           type={'email'}
           placeholder={'e-mail@dominio.com'}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <p>Senha</p>
+        <p className='input-cadastro'>Senha</p>
         <Input
           value={password}
           type={'password'}
           placeholder={'Digite uma senha'}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <p>Repita a senha</p>
+        <p className='input-cadastro'>Repita a senha</p>
         <Input
           value={confirmpassword}
           type={'password'}
@@ -59,7 +59,7 @@ function Cadastro() {
           onClick={realizacadastro}
           buttonname={'Cadastrar'}
         />  
-        <a href='/'><u>Já possui cadastro? Clique aqui para fazer login</u></a>
+        <a className='fazer-login' href='/'><u>Já possui cadastro? Clique aqui para fazer login</u></a>
         </div>   
     </>
   )

@@ -31,17 +31,17 @@ function Menu() {
 
   return (
     <>
-      <div className='menu'>
+      <div className='container-menu'>
         <div className='back-icon' onClick={() => window.history.back()}>
           <BsChevronCompactLeft />
         </div>
         <h3 className='header-text'>Menu</h3>
       </div>
-      <div className='div-container-menu'>
+      <div className='div-body-menu'>
         <a className="email-link">E-mail: {userEmail}</a> {/* Agora exibe "Email: (email)" */}
-        <a href='/esquecisenha'>Alterar senha</a>
-        <a>Favoritos</a>
-        <a onClick={Sair}>Sair</a>
+        <a className='a-menu' href='/esquecisenha'>Alterar senha</a>
+        <a className='a-menu' href='/favoritos'>Favoritos</a>
+        <a className='a-menu' onClick={Sair}>Sair</a>
       </div>
 
 

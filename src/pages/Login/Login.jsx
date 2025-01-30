@@ -26,15 +26,15 @@ function Login() {
         <h1 className='titulo'>{titulo}</h1>
         <img src={wheelchair} className="wheelchair" alt="Desenho de uma cadeira de rodas" />
       </div>
-        <div className='form-container'>
-          <p className='form'>E-mail</p>
+        <div className='form-login-container'>
+          <p className='form-login'>E-mail</p>
           <Input
             value={email}
             type={'email'}
             placeholder={'e-mail@dominio.com'}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <p className='form'>Senha</p>
+          <p className='form-login'>Senha</p>
           <Input 
             value={password}
             type={'password'}
@@ -42,13 +42,13 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
           
-          <a href='/esquecisenha'><u>Esqueci minha senha</u></a>
+          <a className='a-login' href='/esquecisenha'><u>Esqueci minha senha</u></a>
 
           <Button
             onClick={realizalogin}
             buttonname={'Login'}
           />
-          <a href='/cadastro'>Ou clique aqui para se <strong>cadastrar</strong></a>
+          <a className='a-login' href='/cadastro'>Ou clique aqui para se <strong>cadastrar</strong></a>
         </div>
     </>
   )

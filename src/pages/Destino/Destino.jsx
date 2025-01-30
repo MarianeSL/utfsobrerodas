@@ -5,7 +5,7 @@ import { BsList } from "react-icons/bs";
 import { BsHeart } from "react-icons/bs";
 import { BsHeartFill } from "react-icons/bs";
 import './Destino.css'
-// import MapaIndoor from '../../shared/Mapa';
+import MapboxComponent from '../../shared/Map/Mapcomponent';
 
 function Destino() {
 
@@ -13,7 +13,7 @@ function Destino() {
 
 
   function selecionaDestino() {
-
+    navigate('/rota')
   }
 
   return (
@@ -25,7 +25,9 @@ function Destino() {
       </div>
       <div className='div-container'>
         <h3 className='seleciona-local'>Para onde você quer ir?</h3>
-        <MapboxComponent></MapboxComponent>
+        <div className='mapa'>
+          <MapboxComponent />
+        </div>
         <Button
           onClick={selecionaDestino}
           buttonname={'Selecionar'}

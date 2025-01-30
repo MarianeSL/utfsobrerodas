@@ -1,0 +1,43 @@
+.container-fav {
+    display: flex;
+    align-items: center; 
+    background-color: white;
+    height: 42px;
+    flex:100%;
+}
+
+.container-fav svg {
+    font-size:24px;
+}
+
+.div-container-fav {
+    display: flex;
+    flex-direction: column;
+  }
+  .lixo {
+    display: flex;
+    align-items: center;
+  }
+  .lixo svg {
+    font-size: 20px;
+  }
+.header-text {
+    width: 100%;
+  }
+ 
+  .a-favorito{
+    color: black;
+    text-decoration: none;
+  }
+
+  .back-icon {
+    display: flex;
+    align-items: center;
+  }
+  .fav-lixo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+  }

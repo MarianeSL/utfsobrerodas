@@ -31,7 +31,7 @@ function Esquecisenha() {
                     </div>
                     :
                     <>
-                        <p>Digite o e-mail cadastrado</p>
+                        <p className='input-esquecisenha'>Digite o e-mail cadastrado</p>
                         <Input
                             value={email}
                             type={'email'}

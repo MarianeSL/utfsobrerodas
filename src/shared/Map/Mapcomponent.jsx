@@ -16,14 +16,14 @@ const MapboxComponent = () => {
   };
 
   return (
-    <div style={{ height: '100vh', width: '100%' }}>
+    <div style={{ height: '100%', width: '100%' }}>
       <Map
         initialViewState={{
           latitude: -23.185973,
           longitude: -50.656483,
           zoom: 16,
         }}
-        style={{ height: '100%', width: '100%' }}
+        style={{ width: '100%', borderRadius: '24px'}}
         mapStyle="mapbox://styles/mapbox/streets-v12"
         mapboxAccessToken={MAPBOX_TOKEN}
         onClick={handleMapClick} // Captura clique no mapa
