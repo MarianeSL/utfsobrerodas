@@ -7,6 +7,7 @@ import './Login.css'
 import { auth_mod } from '../../firebase/config'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 
+
 function Login() {
 
   const titulo = "UTF sobre rodas"
@@ -20,6 +21,8 @@ function Login() {
     .catch(error => alert(error))
   }
  
+ 
+
   return (
     <>
       <div className='logo'>
