@@ -25,6 +25,9 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/rota" element={<Rota />} />
           <Route path="/favoritos" element={<Favoritos />} />
+
+                    {/* Fallback: redireciona para login ou mostra uma página 404 */}
+                    <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>
     </LocationProvider>
