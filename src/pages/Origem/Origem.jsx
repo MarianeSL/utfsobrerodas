@@ -1,19 +1,21 @@
-import React from 'react'
-import Button from '/src/shared/Button'
-import { useNavigate } from 'react-router-dom'
+// Origem.js
+import React, { useContext } from 'react';
+import Button from '/src/shared/Button';
+import { useNavigate } from 'react-router-dom';
 import { BsList } from "react-icons/bs";
 import { BsHeart } from "react-icons/bs";
 import { BsHeartFill } from "react-icons/bs";
-import './Origem.css'
+import './Origem.css';
 import MapboxComponent from '../../shared/Map/Mapcomponent';
+import { LocationContext } from '../../context/Locationcontext';
 
 function Origem() {
-
   const navigate = useNavigate();
+  const { setOrigin } = useContext(LocationContext);
 
-
-  function selecionaOrigem() {
-    navigate('/destino')
+  function selecionaOrigem(marker) {
+    setOrigin(marker);
+    navigate('/destino');
   }
 
   return (
@@ -26,17 +28,13 @@ function Origem() {
       <div className='div-body'>
         <h3 className='seleciona-local'>Onde você está?</h3>
         <div className='mapa'>
-        <MapboxComponent/>
+          <MapboxComponent onSelectLocation={selecionaOrigem} />
         </div>
-        <Button
-          onClick={selecionaOrigem}
-          buttonname={'Selecionar'}
-        />
         <BsHeart />
         <BsHeartFill />
       </div>
     </>
-  )
+  );
 }
 
-export default Origem
+export default Origem;

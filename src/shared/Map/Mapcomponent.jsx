@@ -1,18 +1,20 @@
+// MapboxComponent.js
 import React, { useState } from 'react';
 import Map, { Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { BsFillGeoFill } from "react-icons/bs";
 
-const MapboxComponent = () => {
+const MapboxComponent = ({ onSelectLocation, route }) => {
+  console.log('entrou no mapa')
   const MAPBOX_TOKEN = 'pk.eyJ1IjoibWFyeXNsIiwiYSI6ImNtNmg2MXZtMjA4cm0yanBvMTBsdHJ6bmMifQ.es9nbCj8awzBF6kuOKh1pw';
 
-  // Estado para armazenar a localização do clique
   const [marker, setMarker] = useState(null);
 
-  // Função chamada quando o usuário clica no mapa
   const handleMapClick = (event) => {
-    const { lng, lat } = event.lngLat; // Obtém coordenadas do clique
-    setMarker({ longitude: lng, latitude: lat });
+    const { lng, lat } = event.lngLat;
+    const newMarker = { longitude: lng, latitude: lat };
+    setMarker(newMarker);
+    onSelectLocation(newMarker);
   };
 
   return (
@@ -26,13 +28,24 @@ const MapboxComponent = () => {
         style={{ width: '100%', borderRadius: '24px'}}
         mapStyle="mapbox://styles/mapbox/streets-v12"
         mapboxAccessToken={MAPBOX_TOKEN}
-        onClick={handleMapClick} // Captura clique no mapa
+        onClick={handleMapClick}
       >
-        {/* Se o usuário clicou, exibe um marcador */}
         {marker && (
           <Marker longitude={marker.longitude} latitude={marker.latitude} anchor="bottom">
             <BsFillGeoFill fontSize={30}/>
           </Marker>
+        )}
+        {route && (
+          <Source id="route" type="geojson" data={route}>
+            <Layer
+              id="route"
+              type="line"
+              paint={{
+                'line-color': '#3b82f6',
+                'line-width': 4,
+              }}
+            />
+          </Source>
         )}
       </Map>
     </div>
@@ -40,4 +53,3 @@ const MapboxComponent = () => {
 };
 
 export default MapboxComponent;
-

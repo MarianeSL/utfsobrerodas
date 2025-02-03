@@ -1,19 +1,21 @@
-import React from 'react'
-import Button from '/src/shared/Button'
-import { useNavigate } from 'react-router-dom'
+// Destino.js
+import React, { useContext } from 'react';
+import Button from '/src/shared/Button';
+import { useNavigate } from 'react-router-dom';
 import { BsList } from "react-icons/bs";
 import { BsHeart } from "react-icons/bs";
 import { BsHeartFill } from "react-icons/bs";
-import './Destino.css'
+import './Destino.css';
 import MapboxComponent from '../../shared/Map/Mapcomponent';
+import { LocationContext } from '../../context/Locationcontext';
 
 function Destino() {
-
   const navigate = useNavigate();
+  const { setDestination } = useContext(LocationContext);
 
-
-  function selecionaDestino() {
-    navigate('/rota')
+  function selecionaDestino(marker) {
+    setDestination(marker);
+    navigate('/rota');
   }
 
   return (
@@ -26,17 +28,13 @@ function Destino() {
       <div className='div-container'>
         <h3 className='seleciona-local'>Para onde você quer ir?</h3>
         <div className='mapa'>
-          <MapboxComponent />
+          <MapboxComponent onSelectLocation={selecionaDestino} />
         </div>
-        <Button
-          onClick={selecionaDestino}
-          buttonname={'Selecionar'}
-        />
         <BsHeart />
         <BsHeartFill />
       </div>
     </>
-  )
+  );
 }
 
-export default Destino
+export default Destino;
