@@ -22,7 +22,7 @@ function Rota() {
 
   const calculateRoute = async () => {
     const MAPBOX_TOKEN = 'pk.eyJ1IjoibWFyeXNsIiwiYSI6ImNtNmg2MXZtMjA4cm0yanBvMTBsdHJ6bmMifQ.es9nbCj8awzBF6kuOKh1pw';
-    const url = `https://api.mapbox.com/directions/v5/mapbox/walking/${origin.longitude},${origin.latitude};${destination.longitude},${destination.latitude}?geometries=geojson&access_token=${pk.eyJ1IjoibWFyeXNsIiwiYSI6ImNtNmg2MXZtMjA4cm0yanBvMTBsdHJ6bmMifQ.es9nbCj8awzBF6kuOKh1pw}`;
+    const url = `https://api.mapbox.com/directions/v5/mapbox/walking/${origin.longitude},${origin.latitude};${destination.longitude},${destination.latitude}?geometries=geojson&access_token=${MAPBOX_TOKEN}`;
 
     const response = await fetch(url);
     const data = await response.json();

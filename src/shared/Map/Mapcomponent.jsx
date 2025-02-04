@@ -1,11 +1,9 @@
-// MapboxComponent.js
 import React, { useState } from 'react';
-import Map, { Marker } from 'react-map-gl';
+import Map, { Marker, Source, Layer } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { BsFillGeoFill } from "react-icons/bs";
 
 const MapboxComponent = ({ onSelectLocation, route }) => {
-  console.log('entrou no mapa')
   const MAPBOX_TOKEN = 'pk.eyJ1IjoibWFyeXNsIiwiYSI6ImNtNmg2MXZtMjA4cm0yanBvMTBsdHJ6bmMifQ.es9nbCj8awzBF6kuOKh1pw';
 
   const [marker, setMarker] = useState(null);
