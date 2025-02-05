@@ -8,31 +8,83 @@ import { BsHeartFill } from "react-icons/bs";
 import './Rota.css';
 import MapboxComponent from '../../shared/Map/Mapcomponent';
 import { LocationContext } from '../../context/Locationcontext';
+import * as turf from "@turf/turf";
 
 function Rota() {
   const navigate = useNavigate();
   const { origin, destination } = useContext(LocationContext);
   const [route, setRoute] = useState(null);
-
   const [favorito, setFavorito] = useState(false);
-  const toggleFavorito = () => {
-    setFavorito(!favorito);
+  const [blocos, setBlocos] = useState(null);
+  const [rotas, setRotas] = useState(null);
+
+  const Favorito = () => {
+    const [favorito, setFavorito] = useState(false); }// Estado inicial: não preenchido
+  
+    const toggleFavorito = () => {
+      setFavorito(!favorito); // Alterna entre preenchido e não preenchido
+    };
+
+
+  // 🔹 Função de carregar os GeoJSON antes do useEffect
+  useEffect(() => {
+    fetch('/src/assets/blocos.geojson')
+      .then(response => response.json())
+      .then(data => setBlocos(data))
+      .catch(error => console.error("Erro ao carregar Blocos GeoJSON:", error));
+
+    fetch('/src/assets/rotas.geojson')
+      .then(response => response.json())
+      .then(data => setRotas(data))
+      .catch(error => console.error("Erro ao carregar Rotas GeoJSON:", error));
+  }, []);
+
+  const verificaSePontoEstaNoBloco = (ponto) => {
+    if (!blocos) return false;
+
+    const pontoTurf = turf.point([ponto.longitude, ponto.latitude]);
+    for (const bloco of blocos.features) {
+      const poligono = turf.polygon(bloco.geometry.coordinates);
+      if (turf.booleanPointInPolygon(pontoTurf, poligono)) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const encontraRota = () => {
+    if (!rotas) return;
+
+    for (const rota of rotas.features) {
+      const linha = turf.lineString(rota.geometry.coordinates);
+      const pontoOrigem = turf.point([origin.longitude, origin.latitude]);
+      const pontoDestino = turf.point([destination.longitude, destination.latitude]);
+
+      // Verifica se origem e destino estão próximos da linha da rota
+      const distanciaOrigem = turf.pointToLineDistance(pontoOrigem, linha, { units: "meters" });
+      const distanciaDestino = turf.pointToLineDistance(pontoDestino, linha, { units: "meters" });
+
+      if (distanciaOrigem < 10 && distanciaDestino < 10) {
+        setRoute(rota.geometry);
+        return;
+      }
+    }
+
+    alert("Desculpe, mas ainda não mapeamos essa rota!");
+    setRoute(null);
   };
 
   useEffect(() => {
-    if (origin && destination) {
-      calculateRoute();
+    if (origin && destination && blocos && rotas) {
+      if (verificaSePontoEstaNoBloco(origin) && verificaSePontoEstaNoBloco(destination)) {
+        encontraRota();
+      } else {
+        alert("Desculpe, mas ainda não mapeamos o(s) bloco(s) selecionado(s)!");
+        setRoute(null);
+      }
     }
-  }, [origin, destination]);
-
-  const calculateRoute = async () => {
-    const MAPBOX_TOKEN = 'pk.eyJ1IjoibWFyeXNsIiwiYSI6ImNtNmg2MXZtMjA4cm0yanBvMTBsdHJ6bmMifQ.es9nbCj8awzBF6kuOKh1pw';
-    const url = `https://api.mapbox.com/directions/v5/mapbox/walking/${origin.longitude},${origin.latitude};${destination.longitude},${destination.latitude}?geometries=geojson&access_token=${MAPBOX_TOKEN}`;
-
-    const response = await fetch(url);
-    const data = await response.json();
-    setRoute(data.routes[0].geometry); 
-  };
+  }, [origin, destination, blocos, rotas]); 
+  
 
   return (
     <>
@@ -47,17 +99,18 @@ function Rota() {
           <MapboxComponent route={route} />
         </div>
         <div className='favoritar' onClick={toggleFavorito}>
-        {favorito ? <BsHeartFill /> : <BsHeart />}
+          {favorito ? <BsHeartFill /> : <BsHeart />}
         </div>
-        <Button
-          onClick={() => navigate('/destino')}
-          buttonname={'Ver direções'}
-        />
-        <Button
-          onClick={() => navigate('/origem')}
-          buttonname={'Nova rota'}
-        />
-        
+        <div className='botoes-rota'>
+          <Button
+            onClick={() => navigate('/destino')}
+            buttonname={'Ver direções'}
+          />
+          <Button
+            onClick={() => navigate('/origem')}
+            buttonname={'Nova rota'}
+          />
+        </div>
       </div>
     </>
   );

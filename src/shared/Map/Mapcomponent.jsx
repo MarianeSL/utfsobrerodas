@@ -23,30 +23,34 @@ const MapboxComponent = ({ onSelectLocation, route }) => {
           longitude: -50.656483,
           zoom: 16,
         }}
-        style={{ width: '100%', borderRadius: '24px'}}
+        style={{ width: '100%', borderRadius: '24px' }}
         mapStyle="mapbox://styles/mapbox/streets-v12"
         mapboxAccessToken={MAPBOX_TOKEN}
         onClick={handleMapClick}
       >
         {marker && (
           <Marker longitude={marker.longitude} latitude={marker.latitude} anchor="bottom">
-            <BsFillGeoFill fontSize={30}/>
+            <BsFillGeoFill fontSize={30} />
           </Marker>
         )}
         {route && (
-          <Source id="route" type="geojson" data={route}>
-            <Layer
-              id="route"
-              type="line"
-              paint={{
-                'line-color': '#3b82f6',
-                'line-width': 4,
-              }}
-            />
-          </Source>
+          <>
+            {console.log("Exibindo rota:", route)}
+            <Source id="route" type="geojson" data={route}>
+              <Layer
+                id="route-layer"
+                type="line"
+                layout={{ "line-join": "round", "line-cap": "round" }}
+                paint={{
+                  "line-color": "#3b82f6",
+                  "line-width": 4,
+                }}
+              />
+            </Source>
+          </>
         )}
       </Map>
-    </div>
+    </div >
   );
 };
 
