@@ -15,10 +15,9 @@ function Origem() {
 
   function selecionaOrigem(marker) {
     setOrigin(marker);
-    navigate('/destino');
   }
 
-  return (
+   return (
     <>
       <div className='header'>
         <div onClick={() => navigate('/menu')}>
@@ -30,8 +29,12 @@ function Origem() {
         <div className='mapa'>
           <MapboxComponent onSelectLocation={selecionaOrigem} />
         </div>
-        <BsHeart />
-        <BsHeartFill />
+        <div className='botão'>
+        <Button
+          onClick={() => navigate('/destino')}
+          buttonname={'Selecionar'}
+        />
+        </div>
       </div>
     </>
   );

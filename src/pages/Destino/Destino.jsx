@@ -15,7 +15,6 @@ function Destino() {
 
   function selecionaDestino(marker) {
     setDestination(marker);
-    navigate('/rota');
   }
 
   return (
@@ -30,8 +29,12 @@ function Destino() {
         <div className='mapa'>
           <MapboxComponent onSelectLocation={selecionaDestino} />
         </div>
-        <BsHeart />
-        <BsHeartFill />
+        <div className='botão'>
+          <Button
+            onClick={() => navigate('/rota')}
+            buttonname={'Selecionar'}
+          />
+        </div>
       </div>
     </>
   );

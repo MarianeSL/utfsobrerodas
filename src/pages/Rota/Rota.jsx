@@ -14,6 +14,11 @@ function Rota() {
   const { origin, destination } = useContext(LocationContext);
   const [route, setRoute] = useState(null);
 
+  const [favorito, setFavorito] = useState(false);
+  const toggleFavorito = () => {
+    setFavorito(!favorito);
+  };
+
   useEffect(() => {
     if (origin && destination) {
       calculateRoute();
@@ -26,7 +31,7 @@ function Rota() {
 
     const response = await fetch(url);
     const data = await response.json();
-    setRoute(data.routes[0].geometry);
+    setRoute(data.routes[0].geometry); 
   };
 
   return (
@@ -37,9 +42,12 @@ function Rota() {
         </div>
       </div>
       <div className='div-body-rota'>
-        <h3 className='header-text-rota'>Sua rota está pronta!</h3>
+        <h3 className='seleciona-local'>Sua rota está pronta!</h3>
         <div className='mapa'>
           <MapboxComponent route={route} />
+        </div>
+        <div className='favoritar' onClick={toggleFavorito}>
+        {favorito ? <BsHeartFill /> : <BsHeart />}
         </div>
         <Button
           onClick={() => navigate('/destino')}
@@ -49,8 +57,7 @@ function Rota() {
           onClick={() => navigate('/origem')}
           buttonname={'Nova rota'}
         />
-        <BsHeart />
-        <BsHeartFill />
+        
       </div>
     </>
   );

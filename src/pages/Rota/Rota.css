@@ -9,6 +9,10 @@
   font-size: 34px;
 }
 
+.favoritar svg {
+  font-size: 20px;
+}
+
 .div-body-rota {
   display: flex;
   flex-direction: column;
@@ -16,15 +20,17 @@
 
 }
 
-.header-text-rota {
-  background-color: white;
-  width: 100%;
-  height: 42px;
+.favoritar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 80%;
+  padding-top: 2%;
 }
 
 .mapa {
   width: 85%;
-  aspect-ratio: 1/1.7;
+  aspect-ratio: 1/1.5;
   border: 1px solid black;
   border-radius: 24px;
   object-fit: cover;
