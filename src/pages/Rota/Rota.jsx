@@ -53,6 +53,9 @@ function Rota() {
   const encontraRota = () => {
     if (!rotas) return;
 
+    let rotaEncontrada = null;
+    let menorDistancia = Infinity;
+
     for (const rota of rotas.features) {
       const linha = turf.lineString(rota.geometry.coordinates);
       const pontoOrigem = turf.point([origin.longitude, origin.latitude]);
@@ -62,26 +65,58 @@ function Rota() {
       const distanciaOrigem = turf.pointToLineDistance(pontoOrigem, linha, { units: "meters" });
       const distanciaDestino = turf.pointToLineDistance(pontoDestino, linha, { units: "meters" });
 
-      if (distanciaOrigem < 10 && distanciaDestino < 10) {
-        setRoute(rota.geometry);
-        return;
+      if (distanciaOrigem + distanciaDestino < menorDistancia) {
+        menorDistancia = distanciaOrigem + distanciaDestino;
+        rotaEncontrada = rota;
       }
     }
+        
+    if (!rotaEncontrada) {
+      alert("Nenhuma rota foi encontrada dentro desse bloco!");
+      setRoute(null);
+      return;
+    }
 
-    alert("Desculpe, mas ainda não mapeamos essa rota!");
-    setRoute(null);
+  // Conectar os pontos à rota caso não estejam nela
+  const pontoOrigemMaisProximo = turf.nearestPointOnLine(
+    turf.lineString(rotaEncontrada.geometry.coordinates), 
+    turf.point([origin.longitude, origin.latitude])
+  );
+
+  const pontoDestinoMaisProximo = turf.nearestPointOnLine(
+    turf.lineString(rotaEncontrada.geometry.coordinates), 
+    turf.point([destination.longitude, destination.latitude])
+  );
+
+  // Criar um novo GeoJSON com os pontos conectados
+  const novaRota = {
+    type: "Feature",
+    geometry: {
+      type: "LineString",
+      coordinates: [
+        [origin.longitude, origin.latitude],  // Começa na origem
+        pontoOrigemMaisProximo.geometry.coordinates, // Conecta à rota
+        ...rotaEncontrada.geometry.coordinates, // Caminho original
+        pontoDestinoMaisProximo.geometry.coordinates, // Conecta ao destino
+        [destination.longitude, destination.latitude] // Termina no destino
+      ]
+    }
   };
 
-  useEffect(() => {
-    if (origin && destination && blocos && rotas) {
-      if (verificaSePontoEstaNoBloco(origin) && verificaSePontoEstaNoBloco(destination)) {
-        encontraRota();
-      } else {
-        alert("Desculpe, mas ainda não mapeamos o(s) bloco(s) selecionado(s)!");
-        setRoute(null);
-      }
+  setRoute(novaRota.geometry);
+};
+
+useEffect(() => {
+  if (origin && destination && blocos && rotas) {
+    if (verificaSePontoEstaNoBloco(origin) && verificaSePontoEstaNoBloco(destination)) {
+      encontraRota();
+    } else {
+      alert("Desculpe, mas ainda não mapeamos o(s) bloco(s) selecionado(s)!");
+      setRoute(null);
     }
-  }, [origin, destination, blocos, rotas]); 
+  }
+}, [origin, destination, blocos, rotas]);
+
   
 
   return (
