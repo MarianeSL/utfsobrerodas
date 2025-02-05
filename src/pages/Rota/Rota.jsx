@@ -19,21 +19,19 @@ function Rota() {
   const [rotas, setRotas] = useState(null);
 
   const Favorito = () => {
-    const [favorito, setFavorito] = useState(false); }// Estado inicial: não preenchido
+    const [favorito, setFavorito] = useState(false); }
   
     const toggleFavorito = () => {
-      setFavorito(!favorito); // Alterna entre preenchido e não preenchido
+      setFavorito(!favorito); 
     };
 
-
-  // 🔹 Função de carregar os GeoJSON antes do useEffect
   useEffect(() => {
-    fetch('/src/assets/blocos.geojson')
+    fetch('/blocos.geojson')
       .then(response => response.json())
       .then(data => setBlocos(data))
       .catch(error => console.error("Erro ao carregar Blocos GeoJSON:", error));
 
-    fetch('/src/assets/rotas.geojson')
+    fetch('/rotas.geojson')
       .then(response => response.json())
       .then(data => setRotas(data))
       .catch(error => console.error("Erro ao carregar Rotas GeoJSON:", error));
