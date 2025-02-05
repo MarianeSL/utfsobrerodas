@@ -4,7 +4,15 @@
       {
         "type": "Feature",
         "properties": {
-          "name": "blocoR-blocoK"
+          "name": "blocoR-blocoK",
+          "direcoes":[
+            "Por meio do elevador, chegue ao piso 1.",
+            "Siga na direção da saída.",
+            "Utilize a rampa de acesso em direção ao hall.",
+            "Ao chegar no hall, vire a esquerda e siga em frente por 120 metros até a entrada do bloco K.",
+            "Vire a esquerda novamente e entre no bloco K pela rampa de acesso.",
+            "Você chegou ao seu destino!"
+          ]
         },
         "geometry": {
           "coordinates": [
@@ -39,7 +47,39 @@
         {
           "type": "Feature",
           "properties": {
-            "name": "ru-blocoS"
+            "name": "ru-blocoS",
+            "direcoes":[
+              "Vá até a porta do RU.",
+              "Siga em frente até encontrar o bebedouro em frente a sala 24 horas.",
+              "Vire a esquerda.",
+              "Siga em frente por cerca de 270 metros.",
+              "Vire a esquerda.",
+              "Siga em frente por cerca de 40 metros.",
+              "Vire a direita e siga em frente até encontrar o início da rampa de acesso ao bloco P próxima a escada.",
+              "Siga pela rampa de acesso até o final.",
+              "Vire a direita e siga em frente.",
+              "Faça uma curva suave à esquerda e acesse a outra rampa.",
+              "Siga pela rampa de acesso até o final.",
+              "Siga em frente até as escadas.",
+              "Vire a direita e siga em direção a quadra.",
+              "Ao chegar em frente ao portão da quadra, siga em frente até pouco depois do outro portão.",
+              "Vire a direita e siga até ter como virar para a esquerda.",
+              "Vire a esquerda e siga em frente até o elevador.",
+              "Pegue o elevador e desça um andar.",
+              "Saia do elevador e vire a esquerda.",
+              "Siga em frente até encontrar uma parede branca.",
+              "Vire para a direita e então para a esquerda.",
+              "Siga em frente até encontrar uma parede de tijolos a vista.",
+              "Vire a direita e siga até a frente da incubadora.",
+              "Vire a esquerda e siga em frente em direção ao bloco S.",
+              "Após passar por toda a fachada da incubadora, você verá uma rampa à sua esquerda.",
+              "Pegue a rampa de acesso.",
+              "Siga até o final da rampa e vire a direita.",
+              "Siga em frente até o elevador.",
+              "Pegue o elevador e vá para o piso que deseja.",
+              "Você chegou ao seu destino!"
+
+            ]
           },
           "geometry": {
             "coordinates": [

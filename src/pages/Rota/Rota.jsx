@@ -14,12 +14,13 @@ function Rota() {
   const navigate = useNavigate();
   const { origin, destination } = useContext(LocationContext);
   const [route, setRoute] = useState(null);
+  const [direcoes, setDirecoes] = useState([]);
   const [favorito, setFavorito] = useState(false);
   const [blocos, setBlocos] = useState(null);
   const [rotas, setRotas] = useState(null);
 
   const Favorito = () => {
-    const [favorito, setFavorito] = useState(false); }
+  const [favorito, setFavorito] = useState(false); }
   
     const toggleFavorito = () => {
       setFavorito(!favorito); 
@@ -74,37 +75,19 @@ function Rota() {
     if (!rotaEncontrada) {
       alert("Nenhuma rota foi encontrada dentro desse bloco!");
       setRoute(null);
+      setDirecoes([]);
       return;
     }
 
-  // Conectar os pontos à rota caso não estejam nela
-  const pontoOrigemMaisProximo = turf.nearestPointOnLine(
-    turf.lineString(rotaEncontrada.geometry.coordinates), 
-    turf.point([origin.longitude, origin.latitude])
-  );
-
-  const pontoDestinoMaisProximo = turf.nearestPointOnLine(
-    turf.lineString(rotaEncontrada.geometry.coordinates), 
-    turf.point([destination.longitude, destination.latitude])
-  );
-
-  // Criar um novo GeoJSON com os pontos conectados
-  const novaRota = {
-    type: "Feature",
-    geometry: {
-      type: "LineString",
-      coordinates: [
-        [origin.longitude, origin.latitude],  // Começa na origem
-        pontoOrigemMaisProximo.geometry.coordinates, // Conecta à rota
-        ...rotaEncontrada.geometry.coordinates, // Caminho original
-        pontoDestinoMaisProximo.geometry.coordinates, // Conecta ao destino
-        [destination.longitude, destination.latitude] // Termina no destino
-      ]
-    }
-  };
-
-  setRoute(novaRota.geometry);
+  setRoute(rotaEncontrada.geometry);
+  if (rotaEncontrada.properties && rotaEncontrada.properties.direcoes) {
+    setDirecoes(rotaEncontrada.properties.direcoes);
+    console.log("entrou aqui");
+  } else {
+    setDirecoes(["Nenhuma instrução disponível."]);
+  }
 };
+
 
 useEffect(() => {
   if (origin && destination && blocos && rotas) {
@@ -113,6 +96,7 @@ useEffect(() => {
     } else {
       alert("Desculpe, mas ainda não mapeamos o(s) bloco(s) selecionado(s)!");
       setRoute(null);
+      setDirecoes([]);
     }
   }
 }, [origin, destination, blocos, rotas]);
@@ -136,7 +120,7 @@ useEffect(() => {
         </div>
         <div className='botoes-rota'>
           <Button
-            onClick={() => navigate('/destino')}
+            onClick={() => navigate('/direcoes', { state: { direcoes } })}
             buttonname={'Ver direções'}
           />
           <Button
