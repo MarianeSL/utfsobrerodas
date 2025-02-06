@@ -68,4 +68,4 @@ yarn start
 ```
 
 
-4. Finalmente, accesse http://localhost:4173 No seu browser.
+4. Finalmente, accesse http://localhost:4173 no seu browser.
