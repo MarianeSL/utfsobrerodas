@@ -38,9 +38,8 @@ function Menu() {
         <h3 className='header-text'>Menu</h3>
       </div>
       <div className='div-body-menu'>
-        <a className="email-link">E-mail: {userEmail}</a> {/* Agora exibe "Email: (email)" */}
+        <a className="email-link"><span>E-mail:</span> <span>{userEmail}</span></a> {/* Agora exibe "Email: (email)" */}
         <a className='a-menu' href='/esquecisenha'>Alterar senha</a>
-        <a className='a-menu' href='/favoritos'>Favoritos</a>
         <a className='a-menu' onClick={Sair}>Sair</a>
       </div>
 

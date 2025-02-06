@@ -3,8 +3,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import Button from '/src/shared/Button';
 import { useNavigate } from 'react-router-dom';
 import { BsList } from "react-icons/bs";
-import { BsHeart } from "react-icons/bs";
-import { BsHeartFill } from "react-icons/bs";
 import './Rota.css';
 import MapboxComponent from '../../shared/Map/Mapcomponent';
 import { LocationContext } from '../../context/Locationcontext';
@@ -114,9 +112,6 @@ useEffect(() => {
         <h3 className='seleciona-local'>Sua rota está pronta!</h3>
         <div className='mapa'>
           <MapboxComponent route={route} />
-        </div>
-        <div className='favoritar' onClick={toggleFavorito}>
-          {favorito ? <BsHeartFill /> : <BsHeart />}
         </div>
         <div className='botoes-rota'>
           <Button
